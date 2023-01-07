@@ -1,0 +1,91 @@
+{
+  "pages": [
+    {
+      "id": 1,
+      "icon": "home-circle",
+      "title": "داشبورد",
+      "link": "dashboard"
+    },
+    {
+      "id": 2,
+      "icon": "food-menu",
+      "title": "صورت حساب",
+      "link": "invoices",
+      "items": [
+        {
+          "id": 20,
+          "link": "invoices/list",
+          "title": "لیست"
+        },
+        {
+          "id": 21,
+          "link": "invoices/preview",
+          "title": "پیش نمایش"
+        },
+        {
+          "id": 22,
+          "link": "invoices/edit",
+          "title": "ویرایش"
+        },
+        {
+          "id": 23,
+          "link": "invoices/add",
+          "title": "افزودن"
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "icon": "user",
+      "title": "کاربران",
+      "link": "users",
+      "items": [
+        {
+          "id": 30,
+          "link": "users/list",
+          "title": "لیست"
+        },
+        {
+          "id": 31,
+          "link": "users/preview",
+          "title": "نمایش",
+          "items": [
+            {
+              "id": 310,
+              "link": "users/preview/account",
+              "title": "حساب"
+            },
+            {
+              "id": 311,
+              "link": "users/preview/security",
+              "title": "امنیت"
+            },
+            {
+              "id": 312,
+              "link": "users/preview/notifications",
+              "title": "اعلان ها"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "icon": "check-shield",
+      "title": "نقش ها و مجوز ها",
+      "link": "roles",
+      "items": [
+        {
+          "id": 40,
+          "link": "roles/roles",
+          "title": "نقش ها"
+        },
+        {
+          "id": 41,
+          "link": "roles/permissions",
+          "title": "مجوز ها"
+        }
+      ]
+    }
+  ]
+}

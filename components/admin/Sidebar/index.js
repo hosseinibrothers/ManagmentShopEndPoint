@@ -1,16 +1,28 @@
 import data from '../../../mockData/menu.json';
 import MenuItem from "../Menu/MenuItem";
 import Link from "next/link";
-import {useContext} from "react";
-import {ToggleSidebarContext} from "../../../context/toggleSidebarContext";
+import {useIsOpenSidebar, useIsOpenSidebarAction} from "../../../context/toggleSidebarContext";
 
 export default function Sidebar() {
 
-    const isOpenSidebar = useContext(ToggleSidebarContext);
-
+    const setIsOpenSidebar = useIsOpenSidebarAction();
+    const isOpenSidebar = useIsOpenSidebar();
     const {pages} = data;
+
+    const handleHoverSidebar = () => {
+        if (isOpenSidebar.collapsed) {
+            setIsOpenSidebar({...isOpenSidebar, hovered: true})
+        }
+    }
+
+    const handleBlurSidebar = () => {
+        if (isOpenSidebar.collapsed) {
+            setIsOpenSidebar({...isOpenSidebar, hovered: false})
+        }
+    }
+
     return (
-        <aside id="layout-menu" className="layout-menu menu-vertical menu bg-menu-theme">
+        <aside id="layout-menu" className="layout-menu menu-vertical menu bg-menu-theme" onMouseEnter={handleHoverSidebar} onMouseLeave={handleBlurSidebar}>
             <div className="app-brand demo">
                 <Link href="/" className="app-brand-link">
                     <span className="app-brand-logo demo">
@@ -23,8 +35,8 @@ export default function Sidebar() {
                 </Link>
 
                 <a href="javascript:void(0);" className="layout-menu-toggle menu-link text-large ms-auto">
-                    <i className="bx menu-toggle-icon d-none d-xl-block fs-4 align-middle"></i>
-                    <i className="bx bx-x d-block d-xl-none bx-sm align-middle"></i>
+                    <i className="bx menu-toggle-icon d-none d-xl-block fs-4 align-middle" onClick={() => setIsOpenSidebar({...isOpenSidebar, collapsed: !isOpenSidebar.collapsed})}></i>
+                    <i className="bx bx-x d-block d-xl-none bx-sm align-middle" onClick={() => setIsOpenSidebar({...isOpenSidebar, expanded: false})}></i>
                 </a>
             </div>
 

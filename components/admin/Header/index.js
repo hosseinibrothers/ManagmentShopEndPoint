@@ -1,25 +1,41 @@
-import {useContext, useEffect, useRef, useState} from "react";
-import {ToggleSidebarContextDispatcher} from "../../../context/toggleSidebarContext";
+import {useEffect, useRef, useState} from "react";
+import {useIsOpenSidebar, useIsOpenSidebarAction} from "../../../context/toggleSidebarContext";
 
 export default function Header() {
 
     const [isShowDropdownUser, setIsShowDropdownUser] = useState(false);
     const [isShowDropdownNotification, setIsShowDropdownNotification] = useState(false);
     const [isShowSearchBox, setIsShowSearchBox] = useState(false);
-
+    const [isScrolled, setIsScrolled] = useState(false);
     const dropdownUserRef = useRef(null);
     const dropdownNotificationRef = useRef(null)
 
-    const setIsOpenSidebar = useContext(ToggleSidebarContextDispatcher);
+    const setIsOpenSidebar = useIsOpenSidebarAction()
+    const isOpenSidebar = useIsOpenSidebar();
 
     useEffect(() => {
         document.addEventListener('mousedown', handleDropdownUser);
         document.addEventListener('mousedown', handleDropdownNotification);
+
+        if (typeof window !== "undefined") {
+            window.addEventListener("scroll", handleScroll);
+        }
+
         return () => {
             document.removeEventListener('mousedown', handleDropdownUser);
             document.removeEventListener('mousedown', handleDropdownNotification);
+            window.removeEventListener("scroll", handleScroll);
         };
     }, [])
+
+
+    const handleScroll = () => {
+        if (document.body.scrollTop > 10 || document.documentElement.scrollTop > 10) {
+            setIsScrolled(true);
+        } else {
+            setIsScrolled(false)
+        }
+    }
 
     const handleDropdownUser = (e) => {
         if (dropdownUserRef?.current && !dropdownUserRef.current.contains(e.target)) {
@@ -34,9 +50,10 @@ export default function Header() {
     }
 
     return (
-        <nav className="layout-navbar navbar navbar-expand-xl align-items-center bg-navbar-theme" id="layout-navbar">
+        <nav className={`layout-navbar navbar navbar-expand-xl align-items-center bg-navbar-theme ${isScrolled ? "navbar-elevated" : ""}`} id="layout-navbar">
             <div className="container-fluid">
-                <div className="layout-menu-toggle navbar-nav align-items-xl-center me-3 me-xl-0 d-xl-none" onClick={() => setIsOpenSidebar(true)}>
+                <div className="layout-menu-toggle navbar-nav align-items-xl-center me-3 me-xl-0 d-xl-none"
+                     onClick={() => setIsOpenSidebar({...isOpenSidebar, expanded: true})}>
                     <a className="nav-item nav-link px-0 me-xl-4" href="javascript:void(0)">
                         <i className="bx bx-menu bx-sm"></i>
                     </a>
@@ -44,7 +61,8 @@ export default function Header() {
 
                 <div className="navbar-nav-right d-flex align-items-center" id="navbar-collapse">
 
-                    <div className="navbar-nav align-items-center" onClick={() => setIsShowSearchBox(prevState => !prevState)}>
+                    <div className="navbar-nav align-items-center"
+                         onClick={() => setIsShowSearchBox(prevState => !prevState)}>
                         <div className="nav-item navbar-search-wrapper mb-0">
                             <a className="nav-item nav-link search-toggler d-flex px-0" href="javascript:void(0);">
                                 <i className="bx bx-search-alt bx-sm"></i>
@@ -190,13 +208,18 @@ export default function Header() {
                         </li>
 
 
-                        <li className="nav-item dropdown-notifications navbar-dropdown dropdown me-3 me-xl-2" onClick={() => setIsShowDropdownNotification(prevState => !prevState)} ref={dropdownNotificationRef}>
-                            <a className={`nav-link dropdown-toggle d-flex hide-arrow ${isShowDropdownNotification ? "show" : ""}`} href="javascript:void(0);"
-                               data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded={isShowDropdownNotification}>
+                        <li className="nav-item dropdown-notifications navbar-dropdown dropdown me-3 me-xl-2"
+                            onClick={() => setIsShowDropdownNotification(prevState => !prevState)}
+                            ref={dropdownNotificationRef}>
+                            <a className={`nav-link dropdown-toggle d-flex hide-arrow ${isShowDropdownNotification ? "show" : ""}`}
+                               href="javascript:void(0);"
+                               data-bs-toggle="dropdown" data-bs-auto-close="outside"
+                               aria-expanded={isShowDropdownNotification}>
                                 <i className="bx bx-bell bx-sm"></i>
                                 <span className="badge bg-danger rounded-pill badge-notifications">5</span>
                             </a>
-                            <ul className={`dropdown-menu dropdown-menu-end py-0 ${isShowDropdownNotification ? "show" : ""}`} data-bs-popper="none">
+                            <ul className={`dropdown-menu dropdown-menu-end py-0 ${isShowDropdownNotification ? "show" : ""}`}
+                                data-bs-popper="none">
                                 <li className="dropdown-menu-header border-bottom">
                                     <div className="dropdown-header d-flex align-items-center py-3">
                                         <h5 className="text-body mb-0 me-auto secondary-font">اعلان‌ها</h5>
@@ -525,7 +548,8 @@ export default function Header() {
                 <div className={`navbar-search-wrapper search-input-wrapper ${isShowSearchBox ? "" : "d-none"}`}>
                     <input type="text" className="form-control search-input container-fluid border-0"
                            placeholder="جستجو ..." aria-label="Search..."/>
-                    <i className="bx bx-x bx-sm search-toggler cursor-pointer" onClick={() => setIsShowSearchBox(false)}></i>
+                    <i className="bx bx-x bx-sm search-toggler cursor-pointer"
+                       onClick={() => setIsShowSearchBox(false)}></i>
                 </div>
             </div>
         </nav>

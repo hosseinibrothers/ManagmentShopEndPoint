@@ -1,7 +1,26 @@
 import AdminLayout from "../../layouts/adminLayout";
 import Input from "../../components/common/Input";
+import Toggle from "../../components/common/Toggle";
+import Switch from "../../components/common/Switch";
+import {useEffect, useRef, useState} from "react";
+import Range from "../../components/common/Range";
+import FileInput from "../../components/common/FileInput";
 
 export default function Dashboard() {
+
+    const [isChecked, setIsChecked] = useState(true);
+    const [isChecked2, setIsChecked2] = useState(false);
+
+    const [isRadio, setIsRadio] = useState("")
+    const [range, setRange] = useState(0)
+
+    const [myFile, setMyFile] = useState(null)
+    const refFile = useRef(null)
+
+    useEffect(() => {
+        console.log(myFile)
+    },[myFile])
+
     return (
         <>
             <h4 className="py-3 breadcrumb-wrapper mb-4">
@@ -20,8 +39,8 @@ export default function Dashboard() {
                                     className=""
                                     placeholder="جان اسنو"
                                     name="name"
-                                    disabled={true}
-                                    readOnly={true}
+                                    disabled={false}
+                                    readOnly={false}
                                     message={{type: 'error', text: "ما هرگز اطلاعات شما را در اختیار کسی نمی‌گذاریم."}}
                                 />
                                 <div id="defaultFormControlHelp" className="form-text">
@@ -183,11 +202,16 @@ export default function Dashboard() {
                                     <label className="form-check-label" htmlFor="defaultCheck1"> انتخاب
                                         نشده </label>
                                 </div>
-                                <div className="form-check">
-                                    <input className="form-check-input" type="checkbox" value="" id="defaultCheck2"
-                                           checked/>
-                                    <label className="form-check-label" htmlFor="defaultCheck2"> نامشخص </label>
-                                </div>
+                                <Toggle
+                                    type="checkbox"
+                                    label="مشخص"
+                                    checked={isChecked2}
+                                    disabled={false}
+                                    onChange={setIsChecked2}
+                                    className=""
+                                    classNameInput=""
+                                    value=""
+                                />
                                 <div className="form-check">
                                     <input className="form-check-input" type="checkbox" value="" id="defaultCheck3"
                                            checked/>
@@ -215,11 +239,42 @@ export default function Dashboard() {
                                     <label className="form-check-label" htmlFor="defaultRadio1"> انتخاب
                                         نشده </label>
                                 </div>
-                                <div className="form-check">
-                                    <input name="default-radio-1" className="form-check-input" type="radio" value=""
-                                           id="defaultRadio2" checked/>
-                                    <label className="form-check-label" htmlFor="defaultRadio2"> انتخاب شده </label>
-                                </div>
+                                <Toggle
+                                    type="radio"
+                                    label="number1"
+                                    className=""
+                                    classNameInput=""
+                                    checked={isRadio === "number1"}
+                                    disabled={false}
+                                    onChange={setIsRadio}
+                                    name="group"
+                                    value="number1"
+                                    id="number1"
+                                />
+                                <Toggle
+                                    type="radio"
+                                    label="number2"
+                                    className=""
+                                    classNameInput=""
+                                    checked={isRadio === "number2"}
+                                    disabled={false}
+                                    onChange={setIsRadio}
+                                    name="group"
+                                    value="number2"
+                                    id="number2"
+                                />
+                                <Toggle
+                                    type="radio"
+                                    label="number3"
+                                    className=""
+                                    classNameInput=""
+                                    checked={isRadio === "number3"}
+                                    disabled={true}
+                                    onChange={setIsRadio}
+                                    name="group"
+                                    value="number3"
+                                    id="number3"
+                                />
                                 <div className="form-check">
                                     <input className="form-check-input" type="radio" value="" id="disabledRadio1"
                                            disabled/>
@@ -397,6 +452,17 @@ export default function Dashboard() {
                                     سوئیچ
                                     پیش‌فرض</label>
                             </div>
+                            <Switch
+                                label="سوییچ کاستوم شده"
+                                id="mySwitch"
+                                className=""
+                                classNameInput=""
+                                checked={isChecked}
+                                onChange={setIsChecked}
+                                disabled={false}
+                                name=""
+                                value="hosein"
+                            />
                             <div className="form-check form-switch mb-2">
                                 <input className="form-check-input" type="checkbox" id="flexSwitchCheckChecked"
                                        checked/>
@@ -441,6 +507,18 @@ export default function Dashboard() {
                             <div>
                                 <label htmlFor="formRange3" className="form-label">قدم‌ها</label>
                                 <input type="range" className="form-range" min="0" max="5" step="0.5" id="formRange3"/>
+                            </div>
+                            <div>
+                                <Range
+                                    label="رنج"
+                                    className=""
+                                    step="10"
+                                    min="0"
+                                    max="50"
+                                    value={range}
+                                    onChange={setRange}
+                                    disabled={false}
+                                />
                             </div>
                         </div>
                     </div>
@@ -563,6 +641,16 @@ export default function Dashboard() {
                             <div className="mb-3">
                                 <label htmlFor="formFile" className="form-label">نمونه ورودی فایل پیش‌فرض</label>
                                 <input className="form-control" type="file" id="formFile"/>
+                            </div>
+                            <div className="mb-3">
+                                <FileInput
+                                    name="filename"
+                                    disabled={false}
+                                    onChange={setMyFile}
+                                    label="ورودی من"
+                                    className=""
+                                    refFile={refFile}
+                                />
                             </div>
                             <div className="mb-3">
                                 <label htmlFor="formFileMultiple" className="form-label">نمونه ورودی فایل چند

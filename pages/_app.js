@@ -6,6 +6,7 @@ import '../styles/theme-default.css';
 import '../styles/demo.css';
 import '../styles/rtl.css';
 import '../styles/auth.css';
+import '../styles/page-misc.css';
 import {AuthContextProvider} from "../context/AuthContext";
 import {ToggleSidebarContextProvider} from "../context/toggleSidebarContext";
 

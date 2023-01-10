@@ -1,23 +1,28 @@
 import Link from "next/link";
 import Input from "../../../components/common/Input";
-import InputPassword from "../../../components/common/inputPassword";
-import {useState} from "react";
-import {changeFieldValue} from "../../../utils/changeFieldValue";
+import InputPassword from "../../../components/common/InputPassword";;
 import {register} from "../../../services/admin";
+import {useFormik} from "formik";
+import {initialValues} from "../../../utils/formsValidator/registerFormValidator";
+import {validationSchema} from "../../../utils/formsValidator/registerFormValidator";
 
 export default function Register() {
 
-    const [fieldValues, setFieldValues] = useState({username: "", email: "", password: ""})
-
-    const handleSubmit = (e) => {
-        e.preventDefault();
-
+    const onSubmit = (values) => {
         try {
-            const data = register(fieldValues);
+            const data = register(values);
         } catch (ex) {
             console.log(ex)
         }
     }
+
+    const formik = useFormik({
+        initialValues,
+        onSubmit,
+        validationSchema,
+        validateOnMount: false
+    });
+
 
     return (
         <div className="container-xxl">
@@ -35,54 +40,51 @@ export default function Register() {
                             <h4 className="mb-2">ماجراجویی اینجا شروع می‌شود</h4>
                             <p className="mb-4">مدیریت برنامه خود را آسان و جذاب کنید!</p>
 
-                            <form id="formAuthentication" className="mb-3" onSubmit={handleSubmit}>
+                            <form id="formAuthentication"
+                                  className={`needs-validation mb-3 ${!formik.isValid ? "was-validated" : ""}`}
+                                  onSubmit={formik.handleSubmit} noValidate={true}>
+                                <Input
+                                    type="text"
+                                    className="text-start"
+                                    dir="ltr"
+                                    name="username"
+                                    placeholder="نام کاربری خود را وارد کنید"
+                                    label="نام کاربری"
+                                    formik={formik}
+                                />
+                                <Input
+                                    type="email"
+                                    className="text-start"
+                                    dir="ltr"
+                                    name="email"
+                                    placeholder="ایمیل خود را وارد کنید"
+                                    label="ایمیل"
+                                    formik={formik}
+                                />
+                                <InputPassword
+                                    label="رمز عبور"
+                                    className="text-start"
+                                    dir="ltr"
+                                    name="password"
+                                    placeholder="············"
+                                    formik={formik}
+                                />
                                 <div className="mb-3">
-                                    <Input
-                                        type="text"
-                                        className="text-start"
-                                        dir="ltr"
-                                        name="username"
-                                        placeholder="نام کاربری خود را وارد کنید"
-                                        label="نام کاربری"
-                                        value={fieldValues.username}
-                                        onChange={value => changeFieldValue(setFieldValues, fieldValues, "username", value)}
-                                    />
-                                </div>
-                                <div className="mb-3">
-                                    <Input
-                                        type="email"
-                                        className="text-start"
-                                        dir="ltr"
-                                        name="email"
-                                        placeholder="ایمیل خود را وارد کنید"
-                                        label="ایمیل"
-                                        value={fieldValues.email}
-                                        onChange={value => changeFieldValue(setFieldValues, fieldValues, "email", value)}
-                                    />
-                                </div>
-                                <div className="mb-3 form-password-toggle">
-                                    <InputPassword
-                                        label="رمز عبور"
-                                        className="text-start"
-                                        dir="ltr"
-                                        name="password"
-                                        placeholder="············"
-                                        value={fieldValues.password}
-                                        onChange={value => changeFieldValue(setFieldValues, fieldValues, "password", value)}
-                                    />
-                                </div>
-
-                                <div className="mb-3">
-                                    <div className="form-check">
-                                        <input className="form-check-input" type="checkbox" id="terms-conditions"
-                                               name="terms"/>
-                                            <label className="form-check-label" htmlFor="terms-conditions">
-                                                من موافقم با<span>&nbsp;</span>
-                                                <a href="javascript:void(0);">سیاست حریم خصوصی و قوانین</a>
-                                            </label>
+                                    <div className="form-check position-relative">
+                                        <input className={`form-check-input ${formik.errors['terms'] ? "is-invalid" : ""}`} type="checkbox" id="terms-conditions"
+                                               name="terms" checked={formik.values['terms']} onChange={formik.handleChange}/>
+                                        <label className="form-check-label" htmlFor="terms-conditions">
+                                            من موافقم با<span>&nbsp;</span>
+                                            <a href="javascript:void(0);">سیاست حریم خصوصی و قوانین</a>
+                                        </label>
+                                        {
+                                            formik.touched['terms'] && formik.errors['terms'] ? (<div className="invalid-feedback">{formik.errors['terms']}</div>) : null
+                                        }
                                     </div>
                                 </div>
-                                <button className="btn btn-primary d-grid w-100">عضویت</button>
+                                <button className="btn btn-primary d-grid w-100"
+                                        disabled={!formik.isValid}>عضویت
+                                </button>
                             </form>
 
                             <p className="text-center">

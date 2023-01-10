@@ -1,21 +1,25 @@
 import Link from "next/link";
 import Input from "../../../components/common/Input";
-import {useState} from "react";
-import {changeFieldValue} from "../../../utils/changeFieldValue";
 import {forgetPassword} from "../../../services/admin";
+import {useFormik} from "formik";
+import {initialValues, validationSchema} from "../../../utils/formsValidator/forgetPasswordFormValidator";
+
 export default function ForgetPassword() {
 
-    const [fieldValues, setFieldValues] = useState({email: ""})
-
-    const handleSubmit = (e) => {
-        e.preventDefault();
-
+    const onSubmit = values => {
         try {
-            const data = forgetPassword(fieldValues);
+            const data = forgetPassword(values);
         } catch (ex) {
             console.log(ex)
         }
     }
+
+    const formik = useFormik({
+        initialValues,
+        onSubmit,
+        validationSchema,
+        validateOnMount: false
+    });
 
 
     return (
@@ -34,24 +38,23 @@ export default function ForgetPassword() {
                             <h4 className="mb-2">رمز عبور را فراموش کردید؟</h4>
                             <p className="mb-4">ایمیل خود را وارد کنید و ما دستورالعمل های لازم را برای بازنشانی رمز
                                 عبور برای شما ارسال خواهیم کرد.</p>
-                            <form id="formAuthentication" className="mb-3" onSubmit={handleSubmit}>
-                                <div className="mb-3">
-                                    <Input
-                                        type="email"
-                                        className="text-start"
-                                        dir="ltr"
-                                        name="email"
-                                        placeholder="ایمیل خود را وارد کنید"
-                                        label="ایمیل"
-                                        value={fieldValues.email}
-                                        onChange={value => changeFieldValue(setFieldValues, fieldValues, "email", value)}
-                                    />
-                                </div>
+                            <form id="formAuthentication"
+                                  className={`needs-validation mb-3 ${!formik.isValid ? "was-validated" : ""}`}
+                                  onSubmit={formik.handleSubmit} noValidate={true}>
+                                <Input
+                                    type="email"
+                                    className="text-start"
+                                    dir="ltr"
+                                    name="email"
+                                    placeholder="ایمیل خود را وارد کنید"
+                                    label="ایمیل"
+                                    formik={formik}
+                                />
                                 <button className="btn btn-primary d-grid w-100">ارسال لینک بازنشانی</button>
                             </form>
                             <div className="text-center">
                                 <Link href="./login"
-                                   className="d-flex align-items-center justify-content-center">
+                                      className="d-flex align-items-center justify-content-center">
                                     <i className="bx bx-chevron-left scaleX-n1-rtl"></i>
                                     بازگشت به ورود
                                 </Link>
@@ -61,5 +64,5 @@ export default function ForgetPassword() {
                 </div>
             </div>
         </div>
-)
+    )
 }

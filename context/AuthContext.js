@@ -1,20 +1,18 @@
 import {createContext, useContext, useState} from "react";
 
-const AuthContext = createContext({
-    user : null,
-    isLoggedIn: false
-})
-
+const AuthContext = createContext()
+const AuthContextDispatcher = createContext()
 export const AuthContextProvider = ({children}) => {
 
     const [user, setUser] = useState(null);
-    const [isLoggedIn, setIsLoggedIn] = useState(false);
 
-    const context = {user, isLoggedIn};
     return (
-        <AuthContext.Provider value={context}>
-            {children}
+        <AuthContext.Provider value={user}>
+            <AuthContextDispatcher.Provider value={setUser}>
+                {children}
+            </AuthContextDispatcher.Provider>
         </AuthContext.Provider>
     )
 }
 export const useAuth = () => useContext(AuthContext);
+export const useAuthAction = () => useContext(AuthContextDispatcher);

@@ -1,0 +1,36 @@
+.dropzone {
+    width: 100%;
+    position: relative;
+    padding: 1.5rem;
+    cursor: pointer;
+    border-radius: 0.3125rem;
+}
+
+.light-style .dropzone {
+    border: 2px dashed #d4d8dd;
+}
+
+.dz-message {
+    margin: 5rem 0;
+    font-weight: 500;
+    text-align: center;
+}
+
+.dz-message {
+    font-size: 1.625rem;
+}
+.light-style .dz-message {
+    color: #516377;
+}
+.light-style .dz-message .note {
+    color: #677788;
+}
+
+.dz-message .note {
+    font-weight: 400;
+    display: block;
+    margin-top: 0.625rem;
+}
+.dz-message .note {
+    font-size: 0.9375rem;
+}

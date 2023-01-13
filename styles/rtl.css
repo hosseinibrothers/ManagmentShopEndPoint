@@ -161,7 +161,7 @@ html[dir=rtl] .ps--active-y.ps--active-x>.ps__rail-y {
 }
 
 html[dir=rtl] .ps--active-y:not(.ps--active-x)>.ps__rail-y .ps__thumb-y {
-  right: auto;
+  right: 0;
   left: 0;
 }
 

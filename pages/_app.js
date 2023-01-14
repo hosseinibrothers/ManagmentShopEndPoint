@@ -9,6 +9,7 @@ import '../styles/auth.css';
 import '../styles/page-misc.css';
 import 'react-perfect-scrollbar/dist/css/styles.css';
 import '../styles/dropzone.css';
+import '../styles/select.css';
 import {AuthContextProvider} from "../context/AuthContext";
 import {ToggleSidebarContextProvider} from "../context/toggleSidebarContext";
 

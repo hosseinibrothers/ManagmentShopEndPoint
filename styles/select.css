@@ -1,0 +1,36 @@
+.form-select-wrapper .form-select-options{
+    max-height: 12.5rem;
+    overflow-y: auto;
+    background: #fff;
+    box-shadow: 0 0.25rem 1rem rgb(147 158 170 / 45%);
+    background-clip: padding-box;
+    border-color: transparent;
+    z-index: 1000;
+    display: none;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 100%;
+}
+
+.form-select-wrapper .form-select-options.is-open {
+    display: block;
+}
+
+.form-select-wrapper .form-select-options li.form-select-option {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 0.5rem 1rem;
+}
+
+.form-select-wrapper .form-select-options li.form-select-option:hover {
+    background-color: rgba(38, 60, 85, 0.06);
+    color: #677788;
+}
+
+.form-select-wrapper .form-select.list-open{
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+    border-color: #5a8dee !important;
+}

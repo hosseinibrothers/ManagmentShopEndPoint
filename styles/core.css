@@ -10442,10 +10442,10 @@ html:not([dir=rtl]) .input-group-merge .form-control:not(:last-child) {
 /*  box-shadow: 0 0 0.1875rem 0.0625rem rgba(57, 218, 138, 0.18);*/
 /*}*/
 
-/*.was-validated .form-select:valid, .form-select.is-valid {*/
+/*.was-validated .form-Select:valid, .form-Select.is-valid {*/
 /*  border-color: #39da8a;*/
 /*}*/
-/*.was-validated .form-select:valid:focus, .form-select.is-valid:focus {*/
+/*.was-validated .form-Select:valid:focus, .form-Select.is-valid:focus {*/
 /*  border-color: #39da8a;*/
 /*  box-shadow: 0 0 0.1875rem 0.0625rem rgba(57, 218, 138, 0.18);*/
 /*}*/
@@ -10484,8 +10484,8 @@ html:not([dir=rtl]) .input-group-merge .form-control:not(:last-child) {
 /*}*/
 
 /*.was-validated .input-group .form-control:valid, .input-group .form-control.is-valid,*/
-/*.was-validated .input-group .form-select:valid,*/
-/*.input-group .form-select.is-valid {*/
+/*.was-validated .input-group .form-Select:valid,*/
+/*.input-group .form-Select.is-valid {*/
 /*  z-index: 3;*/
 /*}*/
 

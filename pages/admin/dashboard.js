@@ -1,18 +1,67 @@
 import AdminLayout from "../../layouts/adminLayout";
-import Select from "../../components/common/Select";
-import {useState} from "react";
+import Table from "../../components/common/Table";
 
-const initialOptions = [
-    {value: 1, label: 'تست یک'},
-    {value: 2, label: 'تست دو'},
-    {value: 3, label: 'تست سه'},
-    {value: 4, label: 'تست چهار'},
-    {value: 5, label: 'تست پنج'},
-    {value: 6, label: 'تست شش'},
-]
 export default function Dashboard() {
 
-    const [selectedOption, setSelectedOption] = useState({value: 1, label: 'تست یک'});
+    const handleDelete = (id) => {
+        console.log("delete" + id)
+    }
+
+    const handleEdit = (id) => {
+        console.log("edit" + id)
+    }
+
+    const columns = [
+        {
+            key: "project",
+            title: "پروژه",
+        },
+        {
+            key: "customer",
+            title: "مشتری",
+        },
+        {
+            key: "users",
+            title: "کاربران",
+        },
+        {
+            key: "status",
+            title: "وضعیت",
+            render: (_, {status}) => (
+                <span>{status ? "active" : "deActive"}</span>
+            )
+        },
+        {
+            key: "actions",
+            title: "عمل ها",
+            render: (_, {id}) => (
+                <div className="d-flex justify-content-start">
+                    <button className="btn px-2" onClick={() => handleEdit(id)}><i
+                        className="bx bx-edit-alt me-1"></i></button>
+                    <button className="btn px-2" onClick={() => handleDelete(id)}><i className="bx bx-trash me-1"></i>
+                    </button>
+                </div>
+            ),
+        },
+    ];
+
+    const data = [
+        {
+            project: "Francisco Mendes",
+            users: "hosein",
+            customer: "Full Stack",
+            status: true,
+            id: 1,
+        },
+        {
+            project: "Ricardo Malva",
+            users: "hosein",
+            customer: "Social Media Manager",
+            status: false,
+            id: 2,
+        },
+    ];
+
 
     return (
         <>
@@ -24,20 +73,22 @@ export default function Dashboard() {
                 <div className="col-md-12">
                     <div className="card mb-4">
                         <h5 className="card-header">پیش‌فرض</h5>
-                        <div className="card-body">
-                            <div>
-                                <Select
-                                    label="ورودی انتخاب"
-                                    placeholder="انتخاب کنید.."
-                                    options={initialOptions}
-                                    value={selectedOption}
-                                    onChange={setSelectedOption}
-                                />
-                                <div id="defaultFormControlHelp" className="form-text">
-                                    ما هرگز اطلاعات شما را در اختیار کسی نمی‌گذاریم.
-                                </div>
-                            </div>
-                        </div>
+                        {/*<div className="card-body">*/}
+                        {/*    <div>*/}
+                        {/*        <Select*/}
+                        {/*            label="ورودی انتخاب"*/}
+                        {/*            placeholder="انتخاب کنید.."*/}
+                        {/*            options={initialOptions}*/}
+                        {/*            value={selectedOption}*/}
+                        {/*            onChange={setSelectedOption}*/}
+                        {/*        />*/}
+                        {/*        <div id="defaultFormControlHelp" className="form-text">*/}
+                        {/*            ما هرگز اطلاعات شما را در اختیار کسی نمی‌گذاریم.*/}
+                        {/*        </div>*/}
+                        {/*    </div>*/}
+                        {/*</div>*/}
+
+                        <Table columns={columns} data={data} tHeadClassName="table-light" tableClassName="table-hover"/>
                     </div>
                 </div>
             </div>

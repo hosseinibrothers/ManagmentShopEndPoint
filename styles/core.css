@@ -3284,6 +3284,13 @@ textarea.form-control-lg {
     display: block;
 }
 
+.dropdown-menu.show.custom-style {
+    position: absolute;
+    inset: 0px auto auto 0px;
+    margin: 0px;
+    transform: translate(46px, 27px);
+}
+
 .dropdown-header {
     display: block;
     padding: 0.3125rem 1rem;

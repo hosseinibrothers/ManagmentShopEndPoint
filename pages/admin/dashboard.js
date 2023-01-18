@@ -62,7 +62,6 @@ export default function Dashboard() {
         },
     ];
 
-
     return (
         <>
             <h4 className="py-3 breadcrumb-wrapper mb-4">
@@ -73,22 +72,9 @@ export default function Dashboard() {
                 <div className="col-md-12">
                     <div className="card mb-4">
                         <h5 className="card-header">پیش‌فرض</h5>
-                        {/*<div className="card-body">*/}
-                        {/*    <div>*/}
-                        {/*        <Select*/}
-                        {/*            label="ورودی انتخاب"*/}
-                        {/*            placeholder="انتخاب کنید.."*/}
-                        {/*            options={initialOptions}*/}
-                        {/*            value={selectedOption}*/}
-                        {/*            onChange={setSelectedOption}*/}
-                        {/*        />*/}
-                        {/*        <div id="defaultFormControlHelp" className="form-text">*/}
-                        {/*            ما هرگز اطلاعات شما را در اختیار کسی نمی‌گذاریم.*/}
-                        {/*        </div>*/}
-                        {/*    </div>*/}
-                        {/*</div>*/}
-
-                        <Table columns={columns} data={data} tHeadClassName="table-light" tableClassName="table-hover"/>
+                        <div className="card-body">
+                            <Table data={data} columns={columns} />
+                        </div>
                     </div>
                 </div>
             </div>

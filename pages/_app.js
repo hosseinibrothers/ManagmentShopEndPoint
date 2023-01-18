@@ -12,7 +12,8 @@ import '../styles/dropzone.css';
 import '../styles/select.css';
 import {AuthContextProvider} from "../context/AuthContext";
 import {ToggleSidebarContextProvider} from "../context/toggleSidebarContext";
-
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 export default function App({Component, pageProps}) {
 
     const getLayout = Component.getLayout || ((page) => page)
@@ -25,6 +26,9 @@ export default function App({Component, pageProps}) {
                         <Component {...pageProps} />
                     )
                 }
+                <ToastContainer
+                    rtl={true}
+                />
             </ToggleSidebarContextProvider>
         </AuthContextProvider>
     )

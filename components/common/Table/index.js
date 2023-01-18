@@ -1,7 +1,11 @@
 import TableHeader from "./TableHeader";
 import TableRow from "./TableRow";
+import Pagination from "../Pagination";
+import {useState} from "react";
 
 export default function Table({columns, data, tableClassName, tHeadClassName}) {
+
+    const [pageNumber, setPageNumber] = useState(1)
     return (
         <div className="table-responsive text-nowrap">
             <table className={`table ${tableClassName}`}>
@@ -12,6 +16,7 @@ export default function Table({columns, data, tableClassName, tHeadClassName}) {
                     <TableRow data={data} columns={columns}/>
                 </tbody>
             </table>
+            <Pagination totalCount={100} pageSize={10} onPageChange={setPageNumber} currentPage={pageNumber}/>
         </div>
     )
 }

@@ -5,17 +5,23 @@ import {login} from "../../../services/admin";
 import {useFormik} from "formik";
 import {initialValues} from "../../../utils/formsValidator/loginFormValidator";
 import {validationSchema} from "../../../utils/formsValidator/loginFormValidator";
+import {signIn} from "next-auth/react";
 
 
 export default function Login() {
 
     const onSubmit = (values) => {
-        try {
-            const data = login(values);
-        } catch (ex) {
-            console.log(ex)
-        }
+        signIn('credentials',
+            {
+                email: values.username,
+                password: values.password,
+                // The page where you want to redirect to after a
+                // successful login
+                callbackUrl: `${window.location.origin}/admin/dashboard`
+            }
+        )
     }
+
 
     const formik = useFormik({
         initialValues,

@@ -4,13 +4,14 @@
       "id": 1,
       "icon": "home-circle",
       "title": "داشبورد",
-      "link": "dashboard"
+      "link": "dashboard",
+      "name": "dashboard"
     },
     {
       "id": 2,
       "icon": "food-menu",
       "title": "صورت حساب",
-      "link": "invoices",
+      "name": "invoices",
       "items": [
         {
           "id": 20,
@@ -38,7 +39,7 @@
       "id": 3,
       "icon": "user",
       "title": "کاربران",
-      "link": "users",
+      "name": "users",
       "items": [
         {
           "id": 30,
@@ -73,7 +74,7 @@
       "id": 4,
       "icon": "check-shield",
       "title": "نقش ها و مجوز ها",
-      "link": "roles",
+      "name": "roles",
       "items": [
         {
           "id": 40,

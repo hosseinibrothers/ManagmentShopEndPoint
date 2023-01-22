@@ -1,5 +1,5 @@
 import Link from "next/link";
-import {activeLink} from "../../../utils/activeLink";
+import {activeLink, activeSubmenuLink} from "../../../utils/activeLink";
 import {useRouter} from "next/router";
 
 export default function SumMenuItem({subItem}) {
@@ -7,7 +7,7 @@ export default function SumMenuItem({subItem}) {
     const route = useRouter();
 
     return (
-        <li className={`menu-item ${activeLink(3,subItem?.link.split("/")[1], route.asPath) ? "open active" : ""}`}>
+        <li className={`menu-item ${activeSubmenuLink(3,subItem?.link, route.asPath, 2) ? "open active" : ""}`}>
             <Link href={`/admin/${subItem?.link || ""}`} className={`menu-link ${subItem?.items && subItem?.items.length > 0 ? "menu-toggle" : ""}`}>
                 <div data-i18n="Basic Inputs">{subItem?.title}</div>
             </Link>

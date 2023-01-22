@@ -10,6 +10,7 @@ import '../styles/page-misc.css';
 import 'react-perfect-scrollbar/dist/css/styles.css';
 import '../styles/dropzone.css';
 import '../styles/select.css';
+import '../styles/multi-select.css';
 import {AuthContextProvider} from "../context/AuthContext";
 import {ToggleSidebarContextProvider} from "../context/toggleSidebarContext";
 import { ToastContainer, toast } from 'react-toastify';

@@ -770,7 +770,7 @@ table.dataTable.dtr-column > tbody > tr > th.control:before {
   box-shadow: 0 0 3px rgba(38, 60, 85, 0.8);
 }
 
-.bootstrap-select .dropdown-menu.inner a[aria-selected=true] {
+.bootstrap-select .dropdown-menu.inner button[aria-selected=true] {
   background: rgba(90, 141, 238, 0.08) !important;
   color: #5a8dee !important;
 }

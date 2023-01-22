@@ -1,7 +1,11 @@
 import AdminLayout from "../../layouts/adminLayout";
 import Table from "../../components/common/Table";
+import MultiSelect from "../../components/common/MultiSelect";
+import {useEffect, useState} from "react";
 
 export default function Dashboard() {
+
+    const [selected, setSelected] = useState([]);
 
     const handleDelete = (id) => {
         console.log("delete" + id)
@@ -62,6 +66,17 @@ export default function Dashboard() {
         },
     ];
 
+    const options = [
+        {value: 1, label: "متن ۱"},
+        {value: 2, label: "متن ۲"},
+        {value: 3, label: "متن ۳"},
+        {value: 4, label: "متن ۴"},
+        {value: 5, label: "متن ۵"},
+        {value: 6, label: "متن ۶"},
+        {value: 7, label: "متن ۷"},
+        {value: 8, label: "متن ۸"}
+    ]
+
     return (
         <>
             <h4 className="py-3 breadcrumb-wrapper mb-4">
@@ -73,7 +88,19 @@ export default function Dashboard() {
                     <div className="card mb-4">
                         <h5 className="card-header">پیش‌فرض</h5>
                         <div className="card-body">
-                            <Table data={data} columns={columns} />
+                            {/*<Table data={data} columns={columns} />*/}
+                            <div className="row">
+                                <div className="col-md-4">
+                                    <MultiSelect
+                                        label="مولتی سلکت"
+                                        placeholder="موردی انتخاب نشده است"
+                                        options={options}
+                                        values={selected}
+                                        onChange={setSelected}
+                                        disabled={false}
+                                    />
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>

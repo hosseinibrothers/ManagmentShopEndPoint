@@ -29,7 +29,7 @@ export default function Pagination({totalCount, pageSize, onPageChange, currentP
     return (
         <div className="row mx-2">
             <div className="col-sm-12 col-md-6">
-                <div className="dataTables_info" id="DataTables_Table_0_info" role="status" aria-live="polite">نمایش {(currentPage - 1) * pageSize} {" "}
+                <div className="dataTables_info" id="DataTables_Table_0_info" role="status" aria-live="polite">نمایش {((currentPage - 1) * pageSize) + 1} {" "}
                     تا {currentPage * pageSize} از {totalCount} ردیف
                 </div>
             </div>
@@ -43,16 +43,16 @@ export default function Pagination({totalCount, pageSize, onPageChange, currentP
                         </li>
 
                         {
-                            paginationRange.map(pageNumber => {
+                            paginationRange.map((pageNumber, index) => {
                                 if (pageNumber === DOTS) {
-                                    return (<li className="paginate_button page-item prev">
+                                    return (<li className="paginate_button page-item prev" key={index}>
                                         <span className="page-link cursor-pointer">&#8230;</span>
                                     </li>)
                                 }
 
 
                                 return (
-                                    <li className={`paginate_button page-item prev ${pageNumber === currentPage ? "active" : ""}`} onClick={() => onPageChange(pageNumber)}>
+                                    <li className={`paginate_button page-item prev ${pageNumber === currentPage ? "active" : ""}`} onClick={() => onPageChange(pageNumber)} key={index}>
                                         <span className="page-link cursor-pointer">{pageNumber}</span>
                                     </li>
                                 )

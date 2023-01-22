@@ -3263,7 +3263,7 @@ textarea.form-control-lg {
     border: 0;
 }
 
-.dropdown-item:hover, .dropdown-item:focus {
+.dropdown-item:hover, .dropdown-item:not(button):focus {
     color: #677788;
     background-color: rgba(38, 60, 85, 0.06);
 }
@@ -19520,6 +19520,9 @@ html:not(.layout-menu-fixed) .menu-inner-shadow {
     align-items: center;
     flex: 0 1 auto;
     margin: 0;
+
+    /* added by me*/
+    background: transparent;
 }
 
 .menu-item.disabled .menu-link {

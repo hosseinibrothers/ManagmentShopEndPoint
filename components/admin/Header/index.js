@@ -54,9 +54,9 @@ export default function Header() {
             <div className="container-fluid">
                 <div className="layout-menu-toggle navbar-nav align-items-xl-center me-3 me-xl-0 d-xl-none"
                      onClick={() => setIsOpenSidebar({...isOpenSidebar, expanded: true})}>
-                    <a className="nav-item nav-link px-0 me-xl-4" href="javascript:void(0)">
+                    <button className="nav-item nav-link px-0 me-xl-4 bg-transparent border-0">
                         <i className="bx bx-menu bx-sm"></i>
-                    </a>
+                    </button>
                 </div>
 
                 <div className="navbar-nav-right d-flex align-items-center" id="navbar-collapse">
@@ -64,74 +64,74 @@ export default function Header() {
                     <div className="navbar-nav align-items-center"
                          onClick={() => setIsShowSearchBox(prevState => !prevState)}>
                         <div className="nav-item navbar-search-wrapper mb-0">
-                            <a className="nav-item nav-link search-toggler d-flex px-0" href="javascript:void(0);">
+                            <button className="nav-item nav-link search-toggler d-flex px-0 bg-transparent border-0">
                                 <i className="bx bx-search-alt bx-sm"></i>
                                 <span className="d-none d-md-inline-block text-muted">جستجو (/+Ctrl)</span>
-                            </a>
+                            </button>
                         </div>
                     </div>
 
 
                     <ul className="navbar-nav flex-row align-items-center ms-auto">
                         <li className="nav-item dropdown-language dropdown me-2 me-xl-0">
-                            <a className="nav-link dropdown-toggle hide-arrow" href="javascript:void(0);"
+                            <button className="nav-link dropdown-toggle hide-arrow bg-transparent border-0"
                                data-bs-toggle="dropdown">
                                 <i className="fi fi-ir fis rounded-circle fs-3 me-1"></i>
-                            </a>
+                            </button>
                             <ul className="dropdown-menu dropdown-menu-end">
                                 <li>
-                                    <a className="dropdown-item" href="javascript:void(0);" data-language="fa">
+                                    <button className="dropdown-item bg-transparent border-0" data-language="fa">
                                         <i className="fi fi-ir fis rounded-circle fs-4 me-1"></i>
                                         <span className="align-middle">فارسی</span>
-                                    </a>
+                                    </button>
                                 </li>
                                 <li>
-                                    <a className="dropdown-item" href="javascript:void(0);" data-language="en">
+                                    <button className="dropdown-item bg-transparent border-0" data-language="en">
                                         <i className="fi fi-us fis rounded-circle fs-4 me-1"></i>
                                         <span className="align-middle">انگلیسی</span>
-                                    </a>
+                                    </button>
                                 </li>
                                 <li>
-                                    <a className="dropdown-item" href="javascript:void(0);" data-language="fr">
+                                    <button className="dropdown-item bg-transparent border-0" data-language="fr">
                                         <i className="fi fi-fr fis rounded-circle fs-4 me-1"></i>
                                         <span className="align-middle">فرانسوی</span>
-                                    </a>
+                                    </button>
                                 </li>
                                 <li>
-                                    <a className="dropdown-item" href="javascript:void(0);" data-language="de">
+                                    <button className="dropdown-item bg-transparent border-0" data-language="de">
                                         <i className="fi fi-de fis rounded-circle fs-4 me-1"></i>
                                         <span className="align-middle">آلمانی</span>
-                                    </a>
+                                    </button>
                                 </li>
                                 <li>
-                                    <a className="dropdown-item" href="javascript:void(0);" data-language="pt">
+                                    <button className="dropdown-item bg-transparent border-0" data-language="pt">
                                         <i className="fi fi-pt fis rounded-circle fs-4 me-1"></i>
                                         <span className="align-middle">پرتغالی</span>
-                                    </a>
+                                    </button>
                                 </li>
                             </ul>
                         </li>
 
 
                         <li className="nav-item me-2 me-xl-0">
-                            <a className="nav-link style-switcher-toggle hide-arrow" href="javascript:void(0);">
+                            <button className="nav-link style-switcher-toggle hide-arrow border-0 bg-transparent">
                                 <i className="bx bx-sm"></i>
-                            </a>
+                            </button>
                         </li>
 
 
                         <li className="nav-item dropdown-shortcuts navbar-dropdown dropdown me-2 me-xl-0">
-                            <a className="nav-link dropdown-toggle d-flex hide-arrow" href="javascript:void(0);"
+                            <button className="nav-link dropdown-toggle d-flex hide-arrow bg-transparent border-0"
                                data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false">
                                 <i className="bx bx-grid-alt bx-sm"></i>
-                            </a>
+                            </button>
                             <div className="dropdown-menu dropdown-menu-end py-0">
                                 <div className="dropdown-menu-header border-bottom">
                                     <div className="dropdown-header d-flex align-items-center py-3">
                                         <h5 className="text-body mb-0 me-auto secondary-font">میانبرها</h5>
-                                        <a href="javascript:void(0)" className="dropdown-shortcuts-add text-body"
+                                        <button className="dropdown-shortcuts-add text-body border-0 bg-transparent"
                                            data-bs-toggle="tooltip" data-bs-placement="top" title="افزودن میانبر"><i
-                                            className="bx bx-sm bx-plus-circle"></i></a>
+                                            className="bx bx-sm bx-plus-circle"></i></button>
                                     </div>
                                 </div>
                                 <div className="dropdown-shortcuts-list scrollable-container">
@@ -211,21 +211,20 @@ export default function Header() {
                         <li className="nav-item dropdown-notifications navbar-dropdown dropdown me-3 me-xl-2"
                             onClick={() => setIsShowDropdownNotification(prevState => !prevState)}
                             ref={dropdownNotificationRef}>
-                            <a className={`nav-link dropdown-toggle d-flex hide-arrow ${isShowDropdownNotification ? "show" : ""}`}
-                               href="javascript:void(0);"
+                            <button className={`nav-link dropdown-toggle d-flex hide-arrow bg-transparent border-0 ${isShowDropdownNotification ? "show" : ""}`}
                                data-bs-toggle="dropdown" data-bs-auto-close="outside"
                                aria-expanded={isShowDropdownNotification}>
                                 <i className="bx bx-bell bx-sm"></i>
                                 <span className="badge bg-danger rounded-pill badge-notifications">5</span>
-                            </a>
+                            </button>
                             <ul className={`dropdown-menu dropdown-menu-end py-0 ${isShowDropdownNotification ? "show" : ""}`}
                                 data-bs-popper="none">
                                 <li className="dropdown-menu-header border-bottom">
                                     <div className="dropdown-header d-flex align-items-center py-3">
                                         <h5 className="text-body mb-0 me-auto secondary-font">اعلان‌ها</h5>
-                                        <a href="javascript:void(0)" className="dropdown-notifications-all text-body"
+                                        <button className="dropdown-notifications-all text-body bg-transparent border-0"
                                            data-bs-toggle="tooltip" data-bs-placement="top"
-                                           title="علامت خوانده شده به همه"><i className="bx fs-4 bx-envelope-open"></i></a>
+                                           title="علامت خوانده شده به همه"><i className="bx fs-4 bx-envelope-open"></i></button>
                                     </div>
                                 </li>
                                 <PerfectScrollbar>
@@ -246,12 +245,12 @@ export default function Header() {
                                                         <small className="text-muted">1 ساعت قبل</small>
                                                     </div>
                                                     <div className="flex-shrink-0 dropdown-notifications-actions">
-                                                        <a href="javascript:void(0)"
-                                                           className="dropdown-notifications-read"><span
-                                                            className="badge badge-dot"></span></a>
-                                                        <a href="javascript:void(0)"
-                                                           className="dropdown-notifications-archive"><span
-                                                            className="bx bx-x"></span></a>
+                                                        <button
+                                                            className="dropdown-notifications-read border-0 bg-transparent"><span
+                                                            className="badge badge-dot"></span></button>
+                                                        <button
+                                                            className="dropdown-notifications-archive border-0 d-block bg-transparent"><span
+                                                            className="bx bx-x"></span></button>
                                                     </div>
                                                 </div>
                                             </li>
@@ -269,12 +268,12 @@ export default function Header() {
                                                         <small className="text-muted">12 ساعت قبل</small>
                                                     </div>
                                                     <div className="flex-shrink-0 dropdown-notifications-actions">
-                                                        <a href="javascript:void(0)"
-                                                           className="dropdown-notifications-read"><span
-                                                            className="badge badge-dot"></span></a>
-                                                        <a href="javascript:void(0)"
-                                                           className="dropdown-notifications-archive"><span
-                                                            className="bx bx-x"></span></a>
+                                                        <button
+                                                            className="dropdown-notifications-read border-0 bg-transparent"><span
+                                                            className="badge badge-dot"></span></button>
+                                                        <button
+                                                            className="dropdown-notifications-archive border-0 d-block bg-transparent"><span
+                                                            className="bx bx-x"></span></button>
                                                     </div>
                                                 </div>
                                             </li>
@@ -292,12 +291,12 @@ export default function Header() {
                                                         <small className="text-muted">1 ساعت قبل</small>
                                                     </div>
                                                     <div className="flex-shrink-0 dropdown-notifications-actions">
-                                                        <a href="javascript:void(0)"
-                                                           className="dropdown-notifications-read"><span
-                                                            className="badge badge-dot"></span></a>
-                                                        <a href="javascript:void(0)"
-                                                           className="dropdown-notifications-archive"><span
-                                                            className="bx bx-x"></span></a>
+                                                        <button
+                                                            className="dropdown-notifications-read border-0 bg-transparent"><span
+                                                            className="badge badge-dot"></span></button>
+                                                        <button
+                                                            className="dropdown-notifications-archive border-0 d-block bg-transparent"><span
+                                                            className="bx bx-x"></span></button>
                                                     </div>
                                                 </div>
                                             </li>
@@ -316,12 +315,12 @@ export default function Header() {
                                                         <small className="text-muted">1 روز قبل</small>
                                                     </div>
                                                     <div className="flex-shrink-0 dropdown-notifications-actions">
-                                                        <a href="javascript:void(0)"
-                                                           className="dropdown-notifications-read"><span
-                                                            className="badge badge-dot"></span></a>
-                                                        <a href="javascript:void(0)"
-                                                           className="dropdown-notifications-archive"><span
-                                                            className="bx bx-x"></span></a>
+                                                        <button
+                                                            className="dropdown-notifications-read border-0 bg-transparent"><span
+                                                            className="badge badge-dot"></span></button>
+                                                        <button
+                                                            className="dropdown-notifications-archive border-0 d-block bg-transparent"><span
+                                                            className="bx bx-x"></span></button>
                                                     </div>
                                                 </div>
                                             </li>
@@ -340,12 +339,12 @@ export default function Header() {
                                                         <small className="text-muted">2 روز قبل</small>
                                                     </div>
                                                     <div className="flex-shrink-0 dropdown-notifications-actions">
-                                                        <a href="javascript:void(0)"
-                                                           className="dropdown-notifications-read"><span
-                                                            className="badge badge-dot"></span></a>
-                                                        <a href="javascript:void(0)"
-                                                           className="dropdown-notifications-archive"><span
-                                                            className="bx bx-x"></span></a>
+                                                        <button
+                                                            className="dropdown-notifications-read border-0 bg-transparent"><span
+                                                            className="badge badge-dot"></span></button>
+                                                        <button
+                                                            className="dropdown-notifications-archive border-0 d-block bg-transparent"><span
+                                                            className="bx bx-x"></span></button>
                                                     </div>
                                                 </div>
                                             </li>
@@ -365,12 +364,12 @@ export default function Header() {
                                                         <small className="text-muted">3 روز قبل</small>
                                                     </div>
                                                     <div className="flex-shrink-0 dropdown-notifications-actions">
-                                                        <a href="javascript:void(0)"
-                                                           className="dropdown-notifications-read"><span
-                                                            className="badge badge-dot"></span></a>
-                                                        <a href="javascript:void(0)"
-                                                           className="dropdown-notifications-archive"><span
-                                                            className="bx bx-x"></span></a>
+                                                        <button
+                                                            className="dropdown-notifications-read border-0 bg-transparent"><span
+                                                            className="badge badge-dot"></span></button>
+                                                        <button
+                                                            className="dropdown-notifications-archive border-0 d-block bg-transparent"><span
+                                                            className="bx bx-x"></span></button>
                                                     </div>
                                                 </div>
                                             </li>
@@ -388,12 +387,12 @@ export default function Header() {
                                                         <small className="text-muted">4 روز قبل</small>
                                                     </div>
                                                     <div className="flex-shrink-0 dropdown-notifications-actions">
-                                                        <a href="javascript:void(0)"
-                                                           className="dropdown-notifications-read"><span
-                                                            className="badge badge-dot"></span></a>
-                                                        <a href="javascript:void(0)"
-                                                           className="dropdown-notifications-archive"><span
-                                                            className="bx bx-x"></span></a>
+                                                        <button
+                                                            className="dropdown-notifications-read border-0 bg-transparent"><span
+                                                            className="badge badge-dot"></span></button>
+                                                        <button
+                                                            className="dropdown-notifications-archive border-0 d-block bg-transparent"><span
+                                                            className="bx bx-x"></span></button>
                                                     </div>
                                                 </div>
                                             </li>
@@ -411,12 +410,12 @@ export default function Header() {
                                                         <small className="text-muted">5 روز قبل</small>
                                                     </div>
                                                     <div className="flex-shrink-0 dropdown-notifications-actions">
-                                                        <a href="javascript:void(0)"
-                                                           className="dropdown-notifications-read"><span
-                                                            className="badge badge-dot"></span></a>
-                                                        <a href="javascript:void(0)"
-                                                           className="dropdown-notifications-archive"><span
-                                                            className="bx bx-x"></span></a>
+                                                        <button
+                                                           className="dropdown-notifications-read border-0 bg-transparent"><span
+                                                            className="badge badge-dot"></span></button>
+                                                        <button
+                                                           className="dropdown-notifications-archive border-0 d-block bg-transparent"><span
+                                                            className="bx bx-x"></span></button>
                                                     </div>
                                                 </div>
                                             </li>
@@ -436,12 +435,12 @@ export default function Header() {
                                                         <small className="text-muted">5 روز قبل</small>
                                                     </div>
                                                     <div className="flex-shrink-0 dropdown-notifications-actions">
-                                                        <a href="javascript:void(0)"
-                                                           className="dropdown-notifications-read"><span
-                                                            className="badge badge-dot"></span></a>
-                                                        <a href="javascript:void(0)"
-                                                           className="dropdown-notifications-archive"><span
-                                                            className="bx bx-x"></span></a>
+                                                        <button
+                                                           className="dropdown-notifications-read border-0 bg-transparent"><span
+                                                            className="badge badge-dot"></span></button>
+                                                        <button
+                                                           className="dropdown-notifications-archive border-0 d-block bg-transparent"><span
+                                                            className="bx bx-x"></span></button>
                                                     </div>
                                                 </div>
                                             </li>
@@ -449,10 +448,10 @@ export default function Header() {
                                     </li>
                                 </PerfectScrollbar>
                                 <li className="dropdown-menu-footer border-top">
-                                    <a href="javascript:void(0);"
+                                    <button
                                        className="dropdown-item d-flex justify-content-center p-3">
                                         مشاهده همه اعلان‌ها
-                                    </a>
+                                    </button>
                                 </li>
                             </ul>
                         </li>
@@ -460,13 +459,12 @@ export default function Header() {
 
                         <li className="nav-item navbar-dropdown dropdown-user dropdown"
                             onClick={() => setIsShowDropdownUser(prevState => !prevState)} ref={dropdownUserRef}>
-                            <a className={`nav-link dropdown-toggle hide-arrow ${isShowDropdownUser ? "show" : ""}`}
-                               href="javascript:void(0);"
+                            <button className={`nav-link dropdown-toggle hide-arrow bg-transparent border-0 ${isShowDropdownUser ? "show" : ""}`}
                                data-bs-toggle="dropdown">
                                 <div className="avatar avatar-online">
                                     <img src="/images/avatars/1.png" alt="avatar" className="rounded-circle"/>
                                 </div>
-                            </a>
+                            </button>
                             <ul className={`dropdown-menu dropdown-menu-end ${isShowDropdownUser ? "show" : ""}`}
                                 data-bs-popper="none">
                                 <li>

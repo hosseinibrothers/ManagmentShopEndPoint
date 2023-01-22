@@ -2,18 +2,28 @@ import data from '../../../mockData/menu.json';
 import MenuItem from "../Menu/MenuItem";
 import Link from "next/link";
 import {useIsOpenSidebar, useIsOpenSidebarAction} from "../../../context/toggleSidebarContext";
+import PerfectScrollbar from "react-perfect-scrollbar";
+import {useEffect, useState} from "react";
+import {useRouter} from "next/router";
 
 export default function Sidebar() {
+
+    const [selectedParent, setSelectedParent] = useState(null);
 
     const setIsOpenSidebar = useIsOpenSidebarAction();
     const isOpenSidebar = useIsOpenSidebar();
     const {pages} = data;
+    const route = useRouter()
 
     const handleHoverSidebar = () => {
         if (isOpenSidebar.collapsed) {
             setIsOpenSidebar({...isOpenSidebar, hovered: true})
         }
     }
+
+    useEffect(() => {
+        setSelectedParent(route.asPath.split("/")[2])
+    },[])
 
     const handleBlurSidebar = () => {
         if (isOpenSidebar.collapsed) {
@@ -22,7 +32,8 @@ export default function Sidebar() {
     }
 
     return (
-        <aside id="layout-menu" className="layout-menu menu-vertical menu bg-menu-theme" onMouseEnter={handleHoverSidebar} onMouseLeave={handleBlurSidebar}>
+        <aside id="layout-menu" className="layout-menu menu-vertical menu bg-menu-theme"
+               onMouseEnter={handleHoverSidebar} onMouseLeave={handleBlurSidebar}>
             <div className="app-brand demo">
                 <Link href="/" className="app-brand-link">
                     <span className="app-brand-logo demo">
@@ -34,30 +45,34 @@ export default function Sidebar() {
                     <span className="app-brand-text demo menu-text fw-bold ms-2">فرست</span>
                 </Link>
 
-                <a href="javascript:void(0);" className="layout-menu-toggle menu-link text-large ms-auto">
-                    <i className="bx menu-toggle-icon d-none d-xl-block fs-4 align-middle" onClick={() => setIsOpenSidebar({...isOpenSidebar, collapsed: !isOpenSidebar.collapsed})}></i>
-                    <i className="bx bx-x d-block d-xl-none bx-sm align-middle" onClick={() => setIsOpenSidebar({...isOpenSidebar, expanded: false})}></i>
-                </a>
+                <button className="layout-menu-toggle bg-transparent border-0 menu-link text-large ms-auto">
+                    <i className="bx menu-toggle-icon d-none d-xl-block fs-4 align-middle"
+                       onClick={() => setIsOpenSidebar({...isOpenSidebar, collapsed: !isOpenSidebar.collapsed})}></i>
+                    <i className="bx bx-x d-block d-xl-none bx-sm align-middle"
+                       onClick={() => setIsOpenSidebar({...isOpenSidebar, expanded: false})}></i>
+                </button>
             </div>
 
             <div className="menu-divider mt-0"></div>
 
             <div className="menu-inner-shadow"></div>
 
-            <ul className="menu-inner py-1">
-
-                {/*Apps & Pages*/}
-                <li className="menu-header small text-uppercase"><span
-                    className="menu-header-text">برنامه‌ها و صفحات</span></li>
-                {
-                    pages && pages.length > 0 && pages.map(item => {
-                        return (
-                            <MenuItem item={item} key={item.id}/>
-                        )
-                    })
-                }
-
-            </ul>
+            {/*<ul className="menu-inner py-1 overflow-auto">*/}
+                <PerfectScrollbar
+                    className="menu-inner py-1 overflow-auto"
+                >
+                    {/*Apps & Pages*/}
+                    <li className="menu-header small text-uppercase"><span
+                        className="menu-header-text">برنامه‌ها و صفحات</span></li>
+                    {
+                        pages && pages.length > 0 && pages.map(item => {
+                            return (
+                                <MenuItem item={item} key={item.id} onClick={setSelectedParent} selectedParent={selectedParent}/>
+                            )
+                        })
+                    }
+                </PerfectScrollbar>
+            {/*</ul>*/}
         </aside>
     )
 }
